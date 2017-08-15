@@ -42,11 +42,19 @@ Capybara.configure do |config|
 end
 ```
 
+### Selenium
+
 Optionally, you might want to set up selenium:
 
 ```ruby
 require "selenium/webdriver"
 Capybara.javascript_driver = :selenium_chrome_headless
+```
+
+To use chromedriver add the following to your gemfile:
+
+```ruby
+gem "chromedriver-helper"
 ```
 
 ## Contributing
