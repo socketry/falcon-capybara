@@ -32,7 +32,7 @@ Or install it yourself as:
 In your `spec_helper.rb` add the following:
 
 ```ruby
-require 'falcon-capybara'
+require "falcon/capybara"
 
 require "capybara/rspec"
 Capybara.configure do |config|
