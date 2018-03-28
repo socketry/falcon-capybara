@@ -18,9 +18,58 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'capybara'
+require 'thread'
 
-require_relative "capybara/version"
-require_relative "capybara/wrapper"
+require 'async/condition'
+require 'async/io/notification'
 
-Capybara.servers[:falcon] = Falcon::Capybara::Wrapper.new
+module Falcon
+	module Capybara
+		class Wrapper
+			def initialize
+				@job = nil
+				
+				@job_available = Async::IO::Notification.new
+				@job_complete = Async::IO::Notification.new
+			end
+			
+			def close
+				@job_available.close
+				@job_complete.close
+			end
+			
+			def remote(&block)
+				@job = block
+				@job_available.signal
+				
+				Async::Reactor.run do
+					Async.logger.debug (self) {"Waiting for job completion..."}
+					@job_complete.wait until @job.nil?
+				end.wait
+			end
+			
+			def call(app, port, host)
+				require 'async/reactor'
+				require 'falcon/server'
+				
+				Async::Reactor.run do |task|
+					server = Falcon::Server.new(app, Async::IO::Endpoint.tcp(host, port))
+					
+					task.async do
+						Async.logger.debug (self) {"Running server..."}
+						server.run
+					end
+					
+					while true
+						Async.logger.debug (self) {"Waiting for job..."}
+						@job_available.wait while @job.nil?
+						
+						Async.logger.debug (self) {"Running job #{@job}"}
+						@job.call
+						@job = nil
+					end
+				end
+			end
+		end
+	end
+end
