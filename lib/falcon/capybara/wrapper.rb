@@ -51,9 +51,13 @@ module Falcon
 			def call(app, port, host)
 				require 'async/reactor'
 				require 'falcon/server'
+				require 'falcon/adapters/rack'
 				
 				Async::Reactor.run do |task|
-					server = Falcon::Server.new(app, Async::IO::Endpoint.tcp(host, port))
+					server = Falcon::Server.new(
+						Falcon::Adapters::Rack.new(app),
+						Async::IO::Endpoint.tcp(host, port)
+					)
 					
 					task.async do
 						Async.logger.debug (self) {"Running server..."}
