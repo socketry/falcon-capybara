@@ -71,6 +71,8 @@ module Falcon
 						Async.logger.debug (self) {"Running job #{@job}"}
 						@job.call
 						@job = nil
+						
+						@job_complete.signal
 					end
 				end
 			end
