@@ -20,7 +20,7 @@
 
 require 'thread'
 
-require 'async/condition'
+require 'async/io/host_endpoint'
 require 'async/io/notification'
 
 module Falcon
