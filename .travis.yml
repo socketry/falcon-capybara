@@ -1,11 +1,19 @@
 language: ruby
-sudo: false
+sudo: required
 dist: trusty
 cache: bundler
+
 addons:
   apt:
+    sources:
+      - google-chrome
     packages:
       - google-chrome-stable
+
+before_script: 
+  - gem update --system
+  - gem install bundler
+
 rvm:
   - 2.3
   - 2.4
