@@ -44,7 +44,7 @@ module Falcon
 				
 				Async::Reactor.run do
 					Async.logger.debug (self) {"Waiting for job completion..."}
-					@job_complete.wait until @job.nil?
+					@job_complete.wait
 				end.wait
 			end
 			
