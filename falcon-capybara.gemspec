@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
 	spec.authors       = ["Samuel Williams"]
 	spec.email         = ["samuel.williams@oriontransfer.co.nz"]
 
-	spec.summary       = %q{}
+	spec.summary       = "Use the falcon web server to run capybara/selenium tests."
 	spec.homepage      = "https://github.com/socketry/falcon-capybara"
 
 	spec.files         = `git ls-files -z`.split("\x0").reject do |f|
