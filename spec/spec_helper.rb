@@ -18,17 +18,17 @@ end
 
 require "bundler/setup"
 
-require "falcon/capybara"
-
+require 'capybara'
 Capybara.register_driver :chrome do |app|
 	options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu])
 	
 	Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-require "selenium/webdriver"
 Capybara.javascript_driver = :chrome
 
+require "falcon/capybara"
+require "selenium/webdriver"
 require "capybara/rspec"
 
 Capybara.configure do |config|
