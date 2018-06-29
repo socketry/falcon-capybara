@@ -48,14 +48,14 @@ module Falcon
 				end.wait
 			end
 			
-			def call(app, port, host)
+			def call(rack_app, port, host)
 				require 'async/reactor'
 				require 'falcon/server'
-				require 'falcon/adapters/rack'
 				
 				Async::Reactor.run do |task|
-					server = Falcon::Server.new(
-						Falcon::Adapters::Rack.new(app),
+					app = Falcon::Server.middleware(rack_app)
+					
+					server = Falcon::Server.new(app,
 						Async::IO::Endpoint.tcp(host, port)
 					)
 					
