@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
 	
 	spec.require_paths = ["lib"]
 	
-	spec.add_dependency "falcon", "~> 0.17.0"
+	spec.add_dependency "falcon", "~> 0.18.0"
 	spec.add_dependency "capybara"
 	spec.add_dependency "selenium-webdriver"
 	
