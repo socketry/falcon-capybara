@@ -20,6 +20,7 @@
 
 require 'thread'
 
+require 'async/reactor'
 require 'async/io/host_endpoint'
 require 'async/io/notification'
 
@@ -48,6 +49,10 @@ module Falcon
 				end.wait
 			end
 			
+			def protocol
+				Async::HTTP::Protocol::HTTP1
+			end
+			
 			def call(rack_app, port, host)
 				require 'async/reactor'
 				require 'falcon/server'
@@ -56,7 +61,8 @@ module Falcon
 					app = Falcon::Server.middleware(rack_app)
 					
 					server = Falcon::Server.new(app,
-						Async::IO::Endpoint.tcp(host, port)
+						Async::IO::Endpoint.tcp(host, port),
+						protocol
 					)
 					
 					task.async do
@@ -72,6 +78,7 @@ module Falcon
 						@job.call
 						@job = nil
 						
+						Async.logger.debug (self) {"Completing job #{@job}"}
 						@job_complete.signal
 					end
 				end
