@@ -1,7 +1,5 @@
-# coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "falcon/capybara/version"
+
+require_relative "lib/falcon/capybara/version"
 
 Gem::Specification.new do |spec|
 	spec.name          = "falcon-capybara"
@@ -18,7 +16,7 @@ Gem::Specification.new do |spec|
 	
 	spec.require_paths = ["lib"]
 	
-	spec.add_dependency "falcon", "~> 0.18.0"
+	spec.add_dependency "falcon", "~> 0.19.0"
 	spec.add_dependency "capybara"
 	spec.add_dependency "selenium-webdriver"
 	

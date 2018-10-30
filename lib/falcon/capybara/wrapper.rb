@@ -53,6 +53,10 @@ module Falcon
 				Async::HTTP::Protocol::HTTP1
 			end
 			
+			def scheme
+				"http"
+			end
+			
 			def call(rack_app, port, host)
 				require 'async/reactor'
 				require 'falcon/server'
@@ -62,7 +66,7 @@ module Falcon
 					
 					server = Falcon::Server.new(app,
 						Async::IO::Endpoint.tcp(host, port),
-						protocol
+						protocol, scheme
 					)
 					
 					task.async do
