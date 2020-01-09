@@ -1,21 +1,5 @@
 
-if ENV['COVERAGE'] || ENV['TRAVIS']
-	begin
-		require 'simplecov'
-		
-		SimpleCov.start do
-			add_filter "/spec/"
-		end
-		
-		if ENV['TRAVIS']
-			require 'coveralls'
-			Coveralls.wear!
-		end
-	rescue LoadError
-		warn "Could not load simplecov: #{$!}"
-	end
-end
-
+require 'covered/rspec'
 require "bundler/setup"
 
 require 'capybara'
@@ -25,10 +9,13 @@ Capybara.register_driver :chrome do |app|
 	Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :selenium_chrome
 
 require "falcon/capybara"
+
+require "webdrivers"
 require "selenium/webdriver"
+
 require "capybara/rspec"
 
 Capybara.configure do |config|

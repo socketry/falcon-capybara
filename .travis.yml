@@ -1,6 +1,5 @@
 language: ruby
 sudo: false
-dist: trusty
 cache: bundler
 
 addons:
@@ -9,10 +8,6 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
-
-before_script: 
-  - gem update --system
-  - gem install bundler
 
 rvm:
   - 2.3

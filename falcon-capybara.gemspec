@@ -16,13 +16,14 @@ Gem::Specification.new do |spec|
 	
 	spec.require_paths = ["lib"]
 	
-	spec.add_dependency "falcon", "~> 0.19"
+	spec.add_dependency "falcon", "~> 0.34"
 	spec.add_dependency "capybara"
 	spec.add_dependency "selenium-webdriver"
 	
-	spec.add_development_dependency "chromedriver-helper", "~> 1.0"
+	spec.add_development_dependency "webdrivers", "~> 4.0"
 	
-	spec.add_development_dependency "bundler", "~> 1.15"
+	spec.add_development_dependency "covered"
+	spec.add_development_dependency "bundler"
 	spec.add_development_dependency "rake", "~> 10.0"
 	spec.add_development_dependency "rspec", "~> 3.0"
 end
