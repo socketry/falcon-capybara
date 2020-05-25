@@ -20,15 +20,16 @@
 
 require 'thread'
 
-require 'async/reactor'
-require 'async/io/host_endpoint'
+require 'async'
+require 'falcon/endpoint'
 require 'async/io/notification'
 
 module Falcon
 	module Capybara
 		class Wrapper
-			def initialize
+			def initialize(scheme = "http")
 				@job = nil
+				@scheme = scheme
 				
 				@job_available = Async::IO::Notification.new
 				@job_complete = Async::IO::Notification.new
@@ -43,31 +44,30 @@ module Falcon
 				@job = block
 				@job_available.signal
 				
-				Async::Reactor.run do
+				Async do
 					Async.logger.debug (self) {"Waiting for job completion..."}
 					@job_complete.wait
 				end.wait
 			end
 			
-			def protocol
-				Async::HTTP::Protocol::HTTP1
-			end
-			
-			def scheme
-				"http"
+			def endpoint(host, port)
+				Falcon::Endpoint.parse("#{@scheme}://#{host}:#{port}")
 			end
 			
 			def call(rack_app, port, host)
 				require 'async/reactor'
 				require 'falcon/server'
 				
-				Async::Reactor.run do |task|
+				Async do |task|
 					app = Falcon::Server.middleware(rack_app)
 					
-					server = Falcon::Server.new(app,
-						Async::IO::Endpoint.tcp(host, port),
-						protocol, scheme
-					)
+					if host == "127.0.0.1"
+						host = "localhost"
+					end
+					
+					endpoint = self.endpoint(host, port)
+					
+					server = Falcon::Server.new(app, endpoint, endpoint.protocol, endpoint.scheme)
 					
 					task.async do
 						Async.logger.debug (self) {"Running server..."}

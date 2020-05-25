@@ -1,4 +1,4 @@
-# Copyright, 2017, by Samuel G. D. Williams. <http://www.codeotaku.com>
+# Copyright, 2020, by Samuel G. D. Williams. <http://www.codeotaku.com>
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,6 @@
 
 require 'capybara'
 
-require_relative "capybara/version"
-require_relative "capybara/wrapper"
-require_relative "capybara/servers"
-require_relative "capybara/drivers"
+Capybara.servers[:falcon] = Falcon::Capybara::Wrapper.new
+Capybara.servers[:falcon_http] = Falcon::Capybara::Wrapper.new("http")
+Capybara.servers[:falcon_https] = Falcon::Capybara::Wrapper.new("https")
