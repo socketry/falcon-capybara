@@ -5,9 +5,7 @@ Provides relevant [capybara] configuration to run tests using [falcon].
 [falcon]: https://github.com/socketry/falcon
 [capybara]: https://github.com/teamcapybara/capybara
 
-[![Build Status](https://secure.travis-ci.org/socketry/falcon-capybara.svg)](http://travis-ci.org/socketry/falcon-capybara)
-[![Code Climate](https://codeclimate.com/github/socketry/falcon-capybara.svg)](https://codeclimate.com/github/socketry/falcon-capybara)
-[![Coverage Status](https://coveralls.io/repos/socketry/falcon-capybara/badge.svg)](https://coveralls.io/r/socketry/falcon-capybara)
+[![Development Status](https://github.com/socketry/falcon-capybara/workflows/Development/badge.svg)](https://github.com/socketry/falcon-capybara/actions?workflow=Development)
 
 ## Installation
 
