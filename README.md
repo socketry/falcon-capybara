@@ -30,29 +30,36 @@ Or install it yourself as:
 In your `spec_helper.rb` add the following:
 
 ```ruby
-require "falcon/capybara"
+require 'rack/test'
+require 'falcon/capybara'
+require 'capybara/rspec'
+require 'capybara/dsl'
+require 'selenium/webdriver'
 
-require "capybara/rspec"
 Capybara.configure do |config|
-	config.server = :falcon
-
-	# config.app = ...
+	config.app = Rack::Builder.parse_file(
+		File.expand_path('../config.ru', __dir__)
+	).first
+	
+	config.threadsafe = false
+	
+	# For HTTPS:
+	config.server = :falcon_https
+	config.default_driver = :selenium_chrome_https
+	config.javascript_driver = :selenium_chrome_https
+	
+	# For HTTP:
+	config.server = :falcon_http
+	config.default_driver = :selenium_chrome
+	config.javascript_driver = :selenium_chrome
 end
-```
 
-### Selenium
-
-Optionally, you might want to set up selenium:
-
-```ruby
-require "selenium/webdriver"
-Capybara.javascript_driver = :selenium_chrome_headless
-```
-
-To use chromedriver add the following to your gemfile:
-
-```ruby
-gem "chromedriver-helper"
+RSpec.shared_context "website" do
+	include Rack::Test::Methods
+	include Capybara::DSL
+	
+	let(:app) {Capybara.app}
+end
 ```
 
 ## Contributing
