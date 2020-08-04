@@ -14,7 +14,9 @@ require "capybara/rspec"
 Capybara.configure do |config|
 	config.server = :falcon
 	config.javascript_driver = :selenium_chrome_headless
-	config.app = Rack::Builder.parse_file(File.join(__dir__, "config.ru")).first
+	
+	app, _ = Rack::Builder.parse_file(File.join(__dir__, "config.ru"))
+	config.app = app
 end
 
 RSpec.configure do |config|
