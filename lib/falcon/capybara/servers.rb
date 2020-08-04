@@ -20,6 +20,6 @@
 
 require 'capybara'
 
-Capybara.servers[:falcon] = Falcon::Capybara::Wrapper.new
-Capybara.servers[:falcon_http] = Falcon::Capybara::Wrapper.new("http")
-Capybara.servers[:falcon_https] = Falcon::Capybara::Wrapper.new("https")
+Capybara.register_server(:falcon, &Falcon::Capybara::Wrapper.new.method(:call))
+Capybara.register_server(:falcon_http, &Falcon::Capybara::Wrapper.new("http").method(:call))
+Capybara.register_server(:falcon_https, &Falcon::Capybara::Wrapper.new("https").method(:call))

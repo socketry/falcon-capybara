@@ -28,26 +28,7 @@ module Falcon
 	module Capybara
 		class Wrapper
 			def initialize(scheme = "http")
-				@job = nil
 				@scheme = scheme
-				
-				@job_available = Async::IO::Notification.new
-				@job_complete = Async::IO::Notification.new
-			end
-			
-			def close
-				@job_available.close
-				@job_complete.close
-			end
-			
-			def remote(&block)
-				@job = block
-				@job_available.signal
-				
-				Async do
-					Async.logger.debug (self) {"Waiting for job completion..."}
-					@job_complete.wait
-				end.wait
 			end
 			
 			def endpoint(host, port)
@@ -69,22 +50,8 @@ module Falcon
 					
 					server = Falcon::Server.new(app, endpoint, endpoint.protocol, endpoint.scheme)
 					
-					task.async do
-						Async.logger.debug (self) {"Running server..."}
-						server.run
-					end
-					
-					while true
-						Async.logger.debug (self) {"Waiting for job..."}
-						@job_available.wait while @job.nil?
-						
-						Async.logger.debug (self) {"Running job #{@job}"}
-						@job.call
-						@job = nil
-						
-						Async.logger.debug (self) {"Completing job #{@job}"}
-						@job_complete.signal
-					end
+					Async.logger.debug (self) {"Running server..."}
+					server.run
 				end
 			end
 		end
