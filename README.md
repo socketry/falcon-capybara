@@ -54,10 +54,14 @@ Capybara.configure do |config|
 	# For headless, use `:selenium_chrome_headless`
 end
 
-RSpec.shared_context "website" do
-	include Rack::Test::Methods
+# A capybara context which is attached to a browser:
+RSpec.shared_context Capybara do
 	include Capybara::DSL
-	
+end
+
+# A rack test context that issues mocked requests directly against the web app:
+RSpec.shared_context Rack::Test do
+	include Rack::Test::Methods
 	let(:app) {Capybara.app}
 end
 ```
