@@ -7,72 +7,25 @@ Provides relevant [capybara] configuration to run tests using [falcon].
 
 [![Development Status](https://github.com/socketry/falcon-capybara/workflows/Development/badge.svg)](https://github.com/socketry/falcon-capybara/actions?workflow=Development)
 
-## Installation
+## Features
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'falcon-capybara'
-```
-
-And then execute:
-
-	$ bundle
-
-Or install it yourself as:
-
-	$ gem install falcon-capybara
+- Test using the same server you deploy with... [falcon](https://github.com/socketry/falcon) of course :)
+- Faster server startup using in-process server thread.
+- Use event-driven I/O in your server code.
 
 ## Usage
 
-### RSpec
-
-In your `spec_helper.rb` add the following:
-
-```ruby
-require 'rack/test'
-require 'falcon/capybara'
-require 'capybara/rspec'
-require 'capybara/dsl'
-require 'selenium/webdriver'
-
-Capybara.configure do |config|
-	config.app = Rack::Builder.parse_file(
-		File.expand_path('../config.ru', __dir__)
-	).first
-	
-	# For HTTPS:
-	config.server = :falcon_https
-	config.default_driver = :selenium_chrome_https
-	config.javascript_driver = :selenium_chrome_https
-	# For headless, use `:selenium_chrome_headless_https`
-	
-	# For HTTP:
-	config.server = :falcon_http
-	config.default_driver = :selenium_chrome
-	config.javascript_driver = :selenium_chrome
-	# For headless, use `:selenium_chrome_headless`
-end
-
-# A capybara context which is attached to a browser:
-RSpec.shared_context Capybara do
-	include Capybara::DSL
-end
-
-# A rack test context that issues mocked requests directly against the web app:
-RSpec.shared_context Rack::Test do
-	include Rack::Test::Methods
-	let(:app) {Capybara.app}
-end
-```
+Please see the [project documentation](https://socketry.github.io/falcon-capybara).
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+We welcome contributions to this project.
+
+1.  Fork it
+2.  Create your feature branch (`git checkout -b my-new-feature`)
+3.  Commit your changes (`git commit -am 'Add some feature'`)
+4.  Push to the branch (`git push origin my-new-feature`)
+5.  Create new Pull Request
 
 ## License
 

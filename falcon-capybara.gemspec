@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
 	
 	spec.homepage = "https://github.com/socketry/falcon-capybara"
 	
-	spec.files = Dir['{lib}/**/*', base: __dir__]
-
+	spec.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH, base: __dir__)
+	
 	spec.required_ruby_version = ">= 2.5"
 	
 	spec.add_dependency "capybara"
