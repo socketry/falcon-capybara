@@ -12,6 +12,9 @@ require "selenium/webdriver"
 require "capybara/rspec"
 
 Capybara.configure do |config|
+	# This forces capybara to create a new server instance for each session/spec:
+	config.reuse_server = false
+	
 	config.server = :falcon
 	config.javascript_driver = :selenium_chrome_headless
 	

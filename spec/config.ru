@@ -1,14 +1,12 @@
 
-HELLO_WORLD = <<-EOF
+run lambda { |env| [200, {"Content-Type" => "text/html"}, [<<~BODY]] }
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Test</title>
 	</head>
 	<body>
-		<h1>Hello World</h1>
+		<h1>Hello World (#{env['rack.url_scheme']})</h1>
 	</body>
 </html>
-EOF
-
-run lambda { |env| [200, {"Content-Type" => "text/html"}, [HELLO_WORLD]] }
+BODY

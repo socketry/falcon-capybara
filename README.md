@@ -41,17 +41,17 @@ Capybara.configure do |config|
 		File.expand_path('../config.ru', __dir__)
 	).first
 	
-	config.threadsafe = false
-	
 	# For HTTPS:
 	config.server = :falcon_https
 	config.default_driver = :selenium_chrome_https
 	config.javascript_driver = :selenium_chrome_https
+	# For headless, use `:selenium_chrome_headless_https`
 	
 	# For HTTP:
 	config.server = :falcon_http
 	config.default_driver = :selenium_chrome
 	config.javascript_driver = :selenium_chrome
+	# For headless, use `:selenium_chrome_headless`
 end
 
 RSpec.shared_context "website" do

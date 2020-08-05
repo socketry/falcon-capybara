@@ -18,20 +18,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'capybara'
+require "spec_helper"
 
-Capybara.register_driver :selenium_chrome_https do |app|
-	require 'selenium/webdriver'
-	
-	Capybara.drivers[:selenium_chrome].call(app).tap do |driver|
-		driver.options[:options].args << '--allow-insecure-localhost'
-	end
-end
+require 'falcon/capybara/servers'
 
-Capybara.register_driver :selenium_chrome_headless_https do |app|
-	require 'selenium/webdriver'
-	
-	Capybara.drivers[:selenium_chrome_headless].call(app).tap do |driver|
-		driver.options[:options].args << '--allow-insecure-localhost'
+RSpec.describe 'Capybara.servers' do
+	it "has registered servers correctly" do
+		expect(Capybara.servers[:falcon]).to_not be_nil
+		expect(Capybara.servers[:falcon_http]).to_not be_nil
+		expect(Capybara.servers[:falcon_https]).to_not be_nil
 	end
 end

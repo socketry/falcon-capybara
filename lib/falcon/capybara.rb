@@ -21,6 +21,6 @@
 require 'capybara'
 
 require_relative "capybara/version"
-require_relative "capybara/wrapper"
+
 require_relative "capybara/servers"
 require_relative "capybara/drivers"
