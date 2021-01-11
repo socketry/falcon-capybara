@@ -56,7 +56,7 @@ module Falcon
 					
 					endpoint = self.endpoint(host, port)
 					
-					server = Falcon::Server.new(app, endpoint, endpoint.protocol, endpoint.scheme)
+					server = Falcon::Server.new(app, endpoint, protocol: endpoint.protocol, scheme: endpoint.scheme)
 					
 					Async.logger.debug (self) {"Running server..."}
 					server.run
