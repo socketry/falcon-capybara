@@ -83,7 +83,7 @@ end</code></pre>
 		
 		server = Falcon::Server.new(app, endpoint, endpoint.protocol, endpoint.scheme)
 		
-		Async.logger.debug (self) {&quot;Running server...&quot;}
+		Console.logger.debug (self) {&quot;Running server...&quot;}
 		server.run
 	end
 end</code></pre>
