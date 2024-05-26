@@ -30,7 +30,8 @@ module Falcon
 			# @parameter rack_app [Proc] A Rack application.
 			# @parameter port [Integer] The port number to bind to.
 			# @parameter host [String] The local host to bind to.
-			def call(rack_app, port, host)
+			# @parameter options [Hash] Options to pass to the server
+			def call(rack_app, port, host, **options)
 				require 'async/reactor'
 				require 'falcon/server'
 				
