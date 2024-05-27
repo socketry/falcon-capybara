@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2018-2020, by Samuel Williams.
+# Copyright, 2018-2024, by Samuel Williams.
 # Copyright, 2021, by Philip Arndt.
 # Copyright, 2022, by William T. Nelson.
+# Copyright, 2024, by David Siaw.
 
 require 'thread'
 

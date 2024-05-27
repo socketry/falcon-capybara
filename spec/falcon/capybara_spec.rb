@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2017-2020, by Samuel Williams.
+# Copyright, 2017-2024, by Samuel Williams.
 
 RSpec.describe Falcon::Capybara, type: :feature, js: true do
 	# Capybara must be in thread safe mode for this to work correctly.

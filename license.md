@@ -1,8 +1,9 @@
 # MIT License
 
-Copyright, 2017-2021, by Samuel Williams.  
+Copyright, 2017-2022, by Samuel Williams.  
 Copyright, 2021, by Philip Arndt.  
 Copyright, 2022, by William T. Nelson.  
+Copyright, 2024, by David Siaw.  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

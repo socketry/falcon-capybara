@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2017-2020, by Samuel Williams.
+# Copyright, 2017-2022, by Samuel Williams.
 
 source "https://rubygems.org"
 
@@ -15,5 +15,9 @@ group :maintenance, optional: true do
 end
 
 group :test do
+	gem "rspec"
+	gem "covered"
+	
 	gem "bake-test"
+	gem "bake-test-external"
 end

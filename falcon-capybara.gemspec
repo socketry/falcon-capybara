@@ -7,13 +7,18 @@ Gem::Specification.new do |spec|
 	spec.version = Falcon::Capybara::VERSION
 	
 	spec.summary = "Use the falcon web server to run capybara/selenium tests."
-	spec.authors = ["Samuel Williams", "Philip Arndt", "William T. Nelson"]
+	spec.authors = ["Samuel Williams", "David Siaw", "Philip Arndt", "William T. Nelson"]
 	spec.license = "MIT"
 	
 	spec.cert_chain  = ['release.cert']
 	spec.signing_key = File.expand_path('~/.gem/release.pem')
 	
 	spec.homepage = "https://github.com/socketry/falcon-capybara"
+	
+	spec.metadata = {
+		"documentation_uri" => "https://socketry.github.io/falcon-capybara/",
+		"source_code_uri" => "https://github.com/socketry/falcon-capybara.git",
+	}
 	
 	spec.files = Dir.glob(['{lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
 	
@@ -22,9 +27,4 @@ Gem::Specification.new do |spec|
 	spec.add_dependency "capybara", "~> 3.37"
 	spec.add_dependency "falcon"
 	spec.add_dependency "selenium-webdriver"
-	
-	spec.add_development_dependency "bake"
-	spec.add_development_dependency "bundler"
-	spec.add_development_dependency "covered"
-	spec.add_development_dependency "rspec"
 end
