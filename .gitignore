@@ -3,3 +3,5 @@
 /gems.locked
 /.covered.db
 /external
+
+/.github/workflows/test-external.yaml
