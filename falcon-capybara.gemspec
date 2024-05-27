@@ -19,13 +19,13 @@ Gem::Specification.new do |spec|
 	
 	spec.required_ruby_version = ">= 2.5"
 	
-	spec.add_dependency "capybara", "~> 3.37"
-	spec.add_dependency "falcon", "~> 0.34"
+	spec.add_dependency "capybara"
+	spec.add_dependency "falcon"
 	spec.add_dependency "selenium-webdriver"
+	spec.add_dependency "async-io"
 	
 	spec.add_development_dependency "bake"
 	spec.add_development_dependency "bundler"
 	spec.add_development_dependency "covered"
-	spec.add_development_dependency "rspec", "~> 3.0"
-	spec.add_development_dependency "webdrivers", "~> 4.0"
+	spec.add_development_dependency "rspec"
 end

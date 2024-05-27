@@ -10,7 +10,6 @@ require 'capybara'
 
 require "falcon/capybara"
 
-require "webdrivers"
 require "selenium/webdriver"
 
 require "capybara/rspec"

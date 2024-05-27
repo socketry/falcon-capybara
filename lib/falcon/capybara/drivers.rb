@@ -10,11 +10,12 @@ require 'capybara'
 # @name selenium_chrome_https
 # @attribute [Block]
 Capybara.register_driver :selenium_chrome_https do |app|
-	require 'selenium/webdriver'
-	
-	Capybara.drivers[:selenium_chrome].call(app).tap do |driver|
-		driver.options[:capabilities].args << '--allow-insecure-localhost'
-	end
+  chrome_options = Selenium::WebDriver::Chrome::Options.new
+  chrome_options.add_argument('--allow-insecure-localhost')
+  chrome_options.add_argument('--ignore-certificate-errors')
+  Capybara::Selenium::Driver.new(app,
+                                 browser: :chrome,
+                                 options: chrome_options)
 end
 
 # A headless selenium driver for chrome which allows insecure localhost https protocol.
@@ -22,9 +23,11 @@ end
 # @name selenium_chrome_headless_https
 # @attribute [Block]
 Capybara.register_driver :selenium_chrome_headless_https do |app|
-	require 'selenium/webdriver'
-	
-	Capybara.drivers[:selenium_chrome_headless].call(app).tap do |driver|
-		driver.options[:capabilities].args << '--allow-insecure-localhost'
-	end
+  chrome_options = Selenium::WebDriver::Chrome::Options.new
+  chrome_options.add_argument('--allow-insecure-localhost')
+  chrome_options.add_argument('--ignore-certificate-errors')
+  chrome_options.add_argument('--headless=true')
+  Capybara::Selenium::Driver.new(app,
+                                 browser: :chrome,
+                                 options: chrome_options)
 end
