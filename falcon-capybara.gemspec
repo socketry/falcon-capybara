@@ -17,15 +17,14 @@ Gem::Specification.new do |spec|
 	
 	spec.files = Dir.glob(['{lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
 	
-	spec.required_ruby_version = ">= 2.5"
+	spec.required_ruby_version = ">= 3.1"
 	
 	spec.add_dependency "capybara", "~> 3.37"
-	spec.add_dependency "falcon", "~> 0.34"
+	spec.add_dependency "falcon"
 	spec.add_dependency "selenium-webdriver"
 	
 	spec.add_development_dependency "bake"
 	spec.add_development_dependency "bundler"
 	spec.add_development_dependency "covered"
-	spec.add_development_dependency "rspec", "~> 3.0"
-	spec.add_development_dependency "webdrivers", "~> 4.0"
+	spec.add_development_dependency "rspec"
 end
