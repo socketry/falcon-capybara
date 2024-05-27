@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 	spec.add_dependency "capybara", "~> 3.37"
 	spec.add_dependency "falcon"
 	spec.add_dependency "selenium-webdriver"
-	spec.add_dependency "async-io"
+	spec.add_dependency "io-endpoint"
 	
 	spec.add_development_dependency "bake"
 	spec.add_development_dependency "bundler"

@@ -9,7 +9,7 @@ require 'thread'
 
 require 'async'
 require 'falcon/endpoint'
-require 'async/io/notification'
+require 'io/endpoint'
 
 module Falcon
 	module Capybara
