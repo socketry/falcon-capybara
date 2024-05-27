@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
 	
 	spec.files = Dir.glob(['{lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
 	
-	spec.required_ruby_version = ">= 2.5"
+	spec.required_ruby_version = ">= 3.1"
 	
-	spec.add_dependency "capybara"
+	spec.add_dependency "capybara", "~> 3.37"
 	spec.add_dependency "falcon"
 	spec.add_dependency "selenium-webdriver"
 	spec.add_dependency "async-io"
