@@ -10,6 +10,22 @@ Add the gem to your project:
 $ bundle add --group test falcon-capybara
 ~~~
 
+## Rails Minitest Integration
+
+In your `application_system_test_case.rb` add the following:
+
+~~~ ruby
+require "test_helper"
+require "falcon/capybara"
+
+class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
+
+  # Configure Capybara to use Falcon
+  Capybara.server = :falcon  
+end
+~~~
+
 ## RSpec Integration
 
 In your `spec_helper.rb` add the following:
